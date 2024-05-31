@@ -1,12 +1,14 @@
 using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Roles;
 
-public abstract partial class AntagonistRoleComponent : Component
+public interface IAntagonistRoleComponent
 {
-    [DataField("prototype", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string? PrototypeId;
+    public ProtoId<AntagPrototype>? PrototypeId { get; set; }
+
+    public string? Briefing { get; set; }
 }
 
 /// <summary>
@@ -14,7 +16,7 @@ public abstract partial class AntagonistRoleComponent : Component
 /// IE by default other antagonists should refuse to select the same entity for a different antag role
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-[BaseTypeRequired(typeof(AntagonistRoleComponent))]
+[BaseTypeRequired(typeof(IAntagonistRoleComponent))]
 public sealed partial class ExclusiveAntagonistAttribute : Attribute
 {
 }

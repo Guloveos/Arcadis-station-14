@@ -6,6 +6,7 @@ using Content.Server.Roles;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
+using Content.Shared.Roles;
 using Robust.Shared.Random;
 
 namespace Content.Server.GameTicking.Rules;
@@ -22,8 +23,6 @@ public sealed class ThiefRuleSystem : GameRuleSystem<ThiefRuleComponent>
         base.Initialize();
 
         SubscribeLocalEvent<ThiefRuleComponent, AfterAntagEntitySelectedEvent>(AfterAntagSelected);
-
-        SubscribeLocalEvent<ThiefRoleComponent, GetBriefingEvent>(OnGetBriefing);
     }
 
     private void AfterAntagSelected(Entity<ThiefRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
@@ -31,17 +30,9 @@ public sealed class ThiefRuleSystem : GameRuleSystem<ThiefRuleComponent>
         if (!_mindSystem.TryGetMind(args.EntityUid, out var mindId, out var mind))
             return;
 
-        //Generate objectives
-        _antag.SendBriefing(args.EntityUid, MakeBriefing(args.EntityUid), null, null);
-    }
-
-    //Add mind briefing
-    private void OnGetBriefing(Entity<ThiefRoleComponent> thief, ref GetBriefingEvent args)
-    {
-        if (!TryComp<MindComponent>(thief.Owner, out var mind) || mind.OwnedEntity == null)
-            return;
-
-        args.Append(MakeBriefing(mind.OwnedEntity.Value));
+        var comp = Comp<ThiefRoleComponent>(mindId);
+        comp.Briefing = MakeBriefing(args.EntityUid);
+        Dirty(mindId, comp);
     }
 
     private string MakeBriefing(EntityUid thief)

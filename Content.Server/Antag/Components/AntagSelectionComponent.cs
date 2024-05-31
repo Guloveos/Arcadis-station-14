@@ -155,10 +155,10 @@ public partial struct AntagSelectionDefinition()
     public ProtoId<StartingGearPrototype>? StartingGear;
 
     /// <summary>
-    /// A briefing shown to the player.
+    /// The sound played when this antag is selected.
     /// </summary>
     [DataField]
-    public BriefingData? Briefing;
+    public SoundSpecifier? StartSound;
 
     /// <summary>
     /// A spawner used to defer the selection of this particular definition.
@@ -169,29 +169,4 @@ public partial struct AntagSelectionDefinition()
     /// </remarks>
     [DataField]
     public EntProtoId? SpawnerPrototype;
-}
-
-/// <summary>
-/// Contains data used to generate a briefing.
-/// </summary>
-[DataDefinition]
-public partial struct BriefingData
-{
-    /// <summary>
-    /// The text shown
-    /// </summary>
-    [DataField]
-    public LocId? Text;
-
-    /// <summary>
-    /// The color of the text.
-    /// </summary>
-    [DataField]
-    public Color? Color;
-
-    /// <summary>
-    /// The sound played.
-    /// </summary>
-    [DataField]
-    public SoundSpecifier? Sound;
 }

@@ -10,7 +10,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Roles;
 
-public abstract class SharedRoleSystem : EntitySystem
+public sealed class RoleSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
@@ -24,6 +24,16 @@ public abstract class SharedRoleSystem : EntitySystem
     {
         // TODO make roles entities
         SubscribeLocalEvent<JobComponent, MindGetAllRolesEvent>(OnJobGetAllRoles);
+
+        SubscribeAntagEvents<DragonRoleComponent>();
+        SubscribeAntagEvents<InitialInfectedRoleComponent>();
+        SubscribeAntagEvents<NinjaRoleComponent>();
+        SubscribeAntagEvents<NukeopsRoleComponent>();
+        SubscribeAntagEvents<RevolutionaryRoleComponent>();
+        SubscribeAntagEvents<SubvertedSiliconRoleComponent>();
+        SubscribeAntagEvents<TraitorRoleComponent>();
+        SubscribeAntagEvents<ZombieRoleComponent>();
+        SubscribeAntagEvents<ThiefRoleComponent>();
     }
 
     private void OnJobGetAllRoles(EntityUid uid, JobComponent component, ref MindGetAllRolesEvent args)
@@ -43,23 +53,42 @@ public abstract class SharedRoleSystem : EntitySystem
         args.Roles.Add(new RoleInfo(component, name, false, playTimeTracker, prototype));
     }
 
-    protected void SubscribeAntagEvents<T>() where T : AntagonistRoleComponent
+    private void SubscribeAntagEvents<T>() where T : Component, IAntagonistRoleComponent
     {
         SubscribeLocalEvent((EntityUid _, T component, ref MindGetAllRolesEvent args) =>
-        {
-            var name = "game-ticker-unknown-role";
-            var prototype = "";
-            if (component.PrototypeId != null && _prototypes.TryIndex(component.PrototypeId, out AntagPrototype? antag))
             {
-                name = antag.Name;
-                prototype = antag.ID;
-            }
-            name = Loc.GetString(name);
+                var name = "game-ticker-unknown-role";
+                var prototype = "";
+                if (component.PrototypeId != null && _prototypes.TryIndex(component.PrototypeId, out AntagPrototype? antag))
+                {
+                    name = antag.Name;
+                    prototype = antag.ID;
+                }
+                name = Loc.GetString(name);
 
-            args.Roles.Add(new RoleInfo(component, name, true, null, prototype));
-        });
+                args.Roles.Add(new RoleInfo(component, name, true, null, prototype));
+            });
 
-        SubscribeLocalEvent((EntityUid _, T _, ref MindIsAntagonistEvent args) => { args.IsAntagonist = true; args.IsExclusiveAntagonist |= typeof(T).TryGetCustomAttribute<ExclusiveAntagonistAttribute>(out _); });
+        SubscribeLocalEvent((EntityUid _, T _, ref MindIsAntagonistEvent args) =>
+            {
+                args.IsAntagonist = true;
+                args.IsExclusiveAntagonist |= typeof(T).TryGetCustomAttribute<ExclusiveAntagonistAttribute>(out _);
+            });
+
+        SubscribeLocalEvent((EntityUid _, T comp, ref GetBriefingEvent args) =>
+            {
+                if (comp.Briefing == null)
+                    return;
+
+                // loc if exists --
+                // it might be filled with pre-localized text (from an entitysystem)
+                // or a loc id, from yaml
+                var text = comp.Briefing;
+                if (Loc.HasString(comp.Briefing))
+                    text = Loc.GetString(comp.Briefing);
+                args.Append(text, true);
+            });
+
         _antagTypes.Add(typeof(T));
     }
 
@@ -208,6 +237,46 @@ public abstract class SharedRoleSystem : EntitySystem
         return ev.Roles;
     }
 
+    /// <summary>
+    ///     Formats a complete briefing message from all mind components.
+    /// </summary>
+    public FormattedMessage? MindGetBriefing(EntityUid? mindId)
+    {
+        if (mindId == null)
+            return null;
+
+        var ev = new GetBriefingEvent();
+        RaiseLocalEvent(mindId.Value, ref ev);
+        var beforeAntag = ev.Briefings.Aggregate(new FormattedMessage(),
+            (messages, next) =>
+            {
+                messages.AddMessage(next);
+                messages.PushNewline();
+                messages.PushNewline();
+                return messages;
+            });
+
+        var afterAntag = ev.AntagBriefings.Aggregate(new FormattedMessage(),
+            (messages, next) =>
+            {
+                messages.AddMessage(next);
+                messages.PushNewline();
+                messages.PushNewline();
+                return messages;
+            });
+
+        var finalMsg = new FormattedMessage();
+        finalMsg.AddMessage(beforeAntag);
+        if (ev.AntagBriefings.Count == 0)
+            return finalMsg;
+
+        finalMsg.PushMarkup(Loc.GetString("character-info-middle-antag-greeting"));
+        finalMsg.PushNewline();
+        finalMsg.AddMessage(afterAntag);
+
+        return finalMsg;
+    }
+
     public bool MindIsAntagonist(EntityUid? mindId)
     {
         if (mindId == null)
@@ -252,5 +321,33 @@ public abstract class SharedRoleSystem : EntitySystem
     {
         if (Resolve(mindId, ref mind) && mind.Session != null)
             _audio.PlayGlobal(sound, mind.Session);
+    }
+}
+
+/// <summary>
+/// Event raised on the mind to get its briefing.
+/// Handlers should append to the list of messages.
+/// </summary>
+[ByRefEvent]
+public sealed class GetBriefingEvent
+{
+    public readonly List<FormattedMessage> Briefings = new();
+    public readonly List<FormattedMessage> AntagBriefings = new();
+
+    /// <summary>
+    /// Adds a new briefing to the event.
+    /// If antagonist, sends it to a different list for sorting purposes (we display antag briefings after
+    /// all regular briefings)
+    /// </summary>
+    public void Append(string? text, bool antagonist)
+    {
+        if (text == null)
+            return;
+
+        var msg = FormattedMessage.FromMarkup(text);
+        if (antagonist)
+            AntagBriefings.Add(msg);
+        else
+            Briefings.Add(msg);
     }
 }
