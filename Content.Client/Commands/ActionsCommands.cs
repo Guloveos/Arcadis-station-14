@@ -26,9 +26,9 @@ public sealed class SaveActionsCommand : IConsoleCommand
         {
             EntitySystem.Get<ActionsSystem>().SaveActionAssignments(args[0]);
         }
-        catch
+        catch (Exception e)
         {
-            shell.WriteLine("Failed to save action assignments");
+            shell.WriteLine($"Failed to save action assignments:\n{e}");
         }
     }
 }
@@ -55,9 +55,9 @@ public sealed class LoadActionsCommand : LocalizedCommands
         {
             _entitySystemManager.GetEntitySystem<ActionsSystem>().LoadActionAssignments(args[0], true);
         }
-        catch
+        catch (Exception e)
         {
-            shell.WriteError(LocalizationManager.GetString($"cmd-{Command}-error"));
+            shell.WriteError(LocalizationManager.GetString($"cmd-{Command}-error", ("error", e)));
         }
     }
 }
@@ -79,9 +79,9 @@ public sealed class LoadMappingActionsCommand : LocalizedCommands
         {
             _entitySystemManager.GetEntitySystem<MappingSystem>().LoadMappingActions();
         }
-        catch
+        catch (Exception e)
         {
-            shell.WriteError(LocalizationManager.GetString($"cmd-{Command}-error"));
+            shell.WriteError(LocalizationManager.GetString($"cmd-{Command}-error", ("error", e)));
         }
     }
 }
