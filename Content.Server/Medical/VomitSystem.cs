@@ -9,6 +9,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Nutrition;
 using Content.Shared.StatusEffect;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
@@ -21,33 +22,37 @@ namespace Content.Server.Medical
         [Dependency] private readonly IPrototypeManager _proto = default!;
         [Dependency] private readonly AudioSystem _audio = default!;
         [Dependency] private readonly BodySystem _body = default!;
-        [Dependency] private readonly HungerSystem _hunger = default!;
+        [Dependency] private readonly SatiationSystem _satiation = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly PuddleSystem _puddle = default!;
         [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
         [Dependency] private readonly StunSystem _stun = default!;
-        [Dependency] private readonly ThirstSystem _thirst = default!;
         [Dependency] private readonly ForensicsSystem _forensics = default!;
 
         /// <summary>
         /// Make an entity vomit, if they have a stomach.
         /// </summary>
-        public void Vomit(EntityUid uid, float thirstAdded = -40f, float hungerAdded = -40f)
+        public void Vomit(EntityUid uid, Dictionary<ProtoId<SatiationTypePrototype>, float> satiationsAdded)
         {
             // Main requirement: You have a stomach
             var stomachList = _body.GetBodyOrganComponents<StomachComponent>(uid);
             if (stomachList.Count == 0)
                 return;
 
+            float solutionSize = 0;
             // Vomiting makes you hungrier and thirstier
-            if (TryComp<HungerComponent>(uid, out var hunger))
-                _hunger.ModifyHunger(uid, hungerAdded, hunger);
+            if (TryComp<SatiationComponent>(uid, out var satiation))
+            {
+                foreach (var (satiationType, added) in satiationsAdded)
+                {
+                    _satiation.ModifySatiation((uid, satiation), satiationType, added);
+                    solutionSize += MathF.Abs(added);
+                }
+            }
 
-            if (TryComp<ThirstComponent>(uid, out var thirst))
-                _thirst.ModifyThirst(uid, thirst, thirstAdded);
 
             // It fully empties the stomach, this amount from the chem stream is relatively small
-            var solutionSize = (MathF.Abs(thirstAdded) + MathF.Abs(hungerAdded)) / 6;
+            solutionSize /= 6;
             // Apply a bit of slowdown
             if (TryComp<StatusEffectsComponent>(uid, out var status))
                 _stun.TrySlowdown(uid, TimeSpan.FromSeconds(solutionSize), true, 0.5f, 0.5f, status);

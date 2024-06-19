@@ -1,5 +1,5 @@
-using Content.Shared.Hands.Components;
-using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Nutrition;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.NPC.HTN.Preconditions;
@@ -7,12 +7,15 @@ namespace Content.Server.NPC.HTN.Preconditions;
 /// <summary>
 /// Returns true if the active hand entity has the specified components.
 /// </summary>
-public sealed partial class ThirstyPrecondition : HTNPrecondition
+public sealed partial class SatiationPrecondition : HTNPrecondition
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
 
     [DataField(required: true)]
-    public ThirstThreshold MinThirstState = ThirstThreshold.Parched;
+    public SatiationThreashold MinSatiationState = SatiationThreashold.Concerned;
+    [DataField(required: true)]
+    public ProtoId<SatiationTypePrototype> SatiationType = "Hunger";
+
 
     public override bool IsMet(NPCBlackboard blackboard)
     {
@@ -21,6 +24,6 @@ public sealed partial class ThirstyPrecondition : HTNPrecondition
             return false;
         }
 
-        return _entManager.TryGetComponent<ThirstComponent>(owner, out var thirst) ? thirst.CurrentThirstThreshold <= MinThirstState : false;
+        return _entManager.System<SatiationSystem>().IsCurrentSatiationBelowState((owner, null), SatiationType, MinSatiationState);
     }
 }

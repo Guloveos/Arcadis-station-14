@@ -90,9 +90,9 @@ public sealed class DrinkSystem : SharedDrinkSystem
                 foreach (var effect in entry.Effects)
                 {
                     // ignores any effect conditions, just cares about how much it can hydrate
-                    if (effect is SatiateThirst thirst)
+                    if (effect is Satiate saitation && saitation.SatiationType == comp.SatiationType)
                     {
-                        total += thirst.HydrationFactor * quantity.Quantity.Float();
+                        total += saitation.SatiationFactor * quantity.Quantity.Float();
                     }
                 }
             }

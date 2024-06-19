@@ -1,0 +1,79 @@
+- type: satiation
+  id: NormalSatiationHunger
+  thresholds:
+    Full: 200
+    Okay: 150
+    Concerned: 100
+    Desperate: 50
+    Dead: 0
+  thresholdDecayModifiers:
+    Full: 1.2
+    Okay: 1.0
+    Concerned: 0.8
+    Desperate: 0.6
+    Dead: 0.6
+  slowdownModifier: 0.75
+  alertCategory: Hunger
+  alerts:
+    Concerned: Peckish
+    Desperate: Starving
+    Dead: Starving
+  icons:
+    Full: "HungerIconOverfed"
+    Concerned: "HungerIconPeckish"
+    Desperate: "HungerIconStarving"
+    Dead: "HungerIconStarving"
+
+- type: satiation
+  id: AnimalHunger
+  parent: NormalSatiationHunger
+  baseDecayRate: 0.3
+  thresholds:
+    Full: 35
+    Okay: 25
+    Concerned: 15
+    Desperate: 10
+    Dead: 0
+
+- type: satiation
+  id: MouseHunger
+  parent: AnimalHunger
+  baseDecayRate: 0.5
+
+- type: satiation
+  id: CockroachHunger
+  parent: AnimalHunger
+  baseDecayRate: 0.25
+
+- type: satiation
+  id: SimpleMobHunger
+  parent: NormalSatiationHunger
+  baseDecayRate: 0.00925925925926
+  thresholds:
+    Full: 100
+    Okay: 50
+    Concerned: 25
+    Desperate: 10
+    Dead: 0
+
+- type: satiation
+  id: CritterHunger
+  parent: NormalSatiationHunger
+  baseDecayRate: 0.01666666666
+  thresholds:
+    Full: 200
+    Okay: 150
+    Concerned: 100
+    Desperate: 50
+    Dead: 0
+
+- type: satiation
+  id: DionaHunger
+  parent: NormalSatiationHunger
+  baseDecayRate: 0.0083
+  thresholds:
+    Full: 200
+    Okay: 150
+    Concerned: 100
+    Desperate: 50
+    Dead: 0

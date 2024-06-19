@@ -15,6 +15,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Nutrition;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
@@ -24,6 +25,7 @@ using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 using System.Linq;
 
 namespace Content.Server.NPC.Systems;
@@ -47,6 +49,7 @@ public sealed class NPCUtilitySystem : EntitySystem
     [Dependency] private readonly SolutionContainerSystem _solutions = default!;
     [Dependency] private readonly WeldableSystem _weldable = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private readonly SatiationSystem _satiation = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     private EntityQuery<PuddleComponent> _puddleQuery;
@@ -59,6 +62,9 @@ public sealed class NPCUtilitySystem : EntitySystem
     private List<EntityUid> _entityList = new();
     private HashSet<Entity<IComponent>> _entitySet = new();
     private List<EntityPrototype.ComponentRegistryEntry> _compTypes = new();
+
+    private readonly ProtoId<SatiationTypePrototype> _satiationHunger = "Hunger";
+    private readonly ProtoId<SatiationTypePrototype> _satiationThirst = "Thirst";
 
     public override void Initialize()
     {
@@ -177,7 +183,9 @@ public sealed class NPCUtilitySystem : EntitySystem
                 var avoidBadFood = !HasComp<IgnoreBadFoodComponent>(owner);
 
                 // only eat when hungry or if it will eat anything
-                if (TryComp<HungerComponent>(owner, out var hunger) && hunger.CurrentThreshold > HungerThreshold.Okay && avoidBadFood)
+                if (TryComp<SatiationComponent>(owner, out var component)
+                        && !_satiation.IsCurrentSatiationBelowState((owner, component), _satiationHunger, SatiationThreashold.Full)
+                        && avoidBadFood)
                     return 0f;
 
                 // no mouse don't eat the uranium-235
@@ -196,7 +204,8 @@ public sealed class NPCUtilitySystem : EntitySystem
                     return 0f;
 
                 // only drink when thirsty
-                if (TryComp<ThirstComponent>(owner, out var thirst) && thirst.CurrentThirstThreshold > ThirstThreshold.Okay)
+                if (TryComp<SatiationComponent>(owner, out var component)
+                        && !_satiation.IsCurrentSatiationBelowState((owner, component), _satiationThirst, SatiationThreashold.Full))
                     return 0f;
 
                 // no janicow don't drink the blood puddle

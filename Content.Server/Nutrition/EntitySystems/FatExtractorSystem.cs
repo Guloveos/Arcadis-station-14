@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Nutrition.Components;
 using Content.Server.Power.Components;
@@ -8,9 +8,11 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Nutrition;
 using Content.Shared.Storage.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -20,7 +22,7 @@ namespace Content.Server.Nutrition.EntitySystems;
 public sealed class FatExtractorSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly SatiationSystem _satiation = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
@@ -96,13 +98,15 @@ public sealed class FatExtractorSystem : EntitySystem
 
         occupant = storage.Contents.ContainedEntities.FirstOrDefault();
 
-        if (!TryComp<HungerComponent>(occupant, out var hunger))
+        if (!TryComp<SatiationComponent>(occupant, out var satiation))
             return false;
 
-        if (hunger.CurrentHunger < component.NutritionPerSecond)
+        if (!_satiation.TryGetCurrentSatiation((uid, satiation), component.UsedSatiation, out var current)
+            || current < component.NutritionPerSecond)
             return false;
 
-        if (hunger.CurrentThreshold < component.MinHungerThreshold && !HasComp<EmaggedComponent>(uid))
+        if (_satiation.IsCurrentSatiationBelowState((uid, satiation), component.UsedSatiation, component.MinHungerThreshold)
+            && !HasComp<EmaggedComponent>(uid))
             return false;
 
         return true;
@@ -133,7 +137,7 @@ public sealed class FatExtractorSystem : EntitySystem
                 continue;
             fat.NextUpdate += fat.UpdateTime;
 
-            _hunger.ModifyHunger(occupant.Value, -fat.NutritionPerSecond);
+            _satiation.ModifySatiation((occupant.Value, null), fat.UsedSatiation, -fat.NutritionPerSecond);
             fat.NutrientAccumulator += fat.NutritionPerSecond;
             if (fat.NutrientAccumulator >= fat.NutrientPerMeat)
             {

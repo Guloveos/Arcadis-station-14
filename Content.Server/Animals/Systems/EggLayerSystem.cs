@@ -5,24 +5,26 @@ using Content.Shared.Actions.Events;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Nutrition;
 using Content.Shared.Storage;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Animals.Systems;
 
 /// <summary>
-///     Gives ability to produce eggs, produces endless if the 
-///     owner has no HungerComponent
+///     Gives ability to produce eggs, produces endless if the
+///     owner has no SatiationComponent
 /// </summary>
 public sealed class EggLayerSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly SatiationSystem _satiation = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
 
@@ -77,15 +79,17 @@ public sealed class EggLayerSystem : EntitySystem
             return false;
 
         // Allow infinitely laying eggs if they can't get hungry
-        if (TryComp<HungerComponent>(uid, out var hunger))
+        if (TryComp<SatiationComponent>(uid, out var component)
+            && _satiation.TryGetCurrentSatiation((uid, component), egglayer.UsedSatiation, out var current))
         {
-            if (hunger.CurrentHunger < egglayer.HungerUsage)
+
+            if (current < egglayer.SatiationUsage)
             {
-                _popup.PopupEntity(Loc.GetString("action-popup-lay-egg-too-hungry"), uid, uid);
+                _popup.PopupEntity(Loc.GetString(egglayer.InsufficientSatiation), uid, uid);
                 return false;
             }
 
-            _hunger.ModifyHunger(uid, -egglayer.HungerUsage, hunger);
+            _satiation.ModifySatiation((uid, component), egglayer.UsedSatiation, -egglayer.SatiationUsage);
         }
 
         foreach (var ent in EntitySpawnCollection.GetSpawns(egglayer.EggSpawn, _random))

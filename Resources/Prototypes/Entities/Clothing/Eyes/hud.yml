@@ -16,7 +16,7 @@
     damageContainers:
     - Biological
   - type: ShowHealthIcons
-    damageContainers: 
+    damageContainers:
     - Biological
 
 - type: entity
@@ -87,7 +87,7 @@
     sprite: Clothing/Eyes/Hud/friedonion.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/friedonion.rsi
-  - type: ShowHungerIcons
+  - type: ShowSatiationIcons
   - type: Food
   - type: SolutionContainerManager
     solutions:
@@ -111,7 +111,7 @@
     sprite: Clothing/Eyes/Hud/onionbeer.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/onionbeer.rsi
-  - type: ShowHungerIcons
+  - type: ShowSatiationIcons
   - type: ShowThirstIcons
 
 - type: entity
@@ -124,7 +124,7 @@
     sprite: Clothing/Eyes/Hud/medonion.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/medonion.rsi
-  - type: ShowHungerIcons
+  - type: ShowSatiationIcons
 
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]
@@ -136,7 +136,7 @@
     sprite: Clothing/Eyes/Hud/medonionbeer.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/medonionbeer.rsi
-  - type: ShowHungerIcons
+  - type: ShowSatiationIcons
   - type: ShowThirstIcons
 
 - type: entity
@@ -183,7 +183,7 @@
     damageContainers:
     - Biological
     - Inorganic
-  - type: ShowHungerIcons
+  - type: ShowSatiationIcons
   - type: ShowThirstIcons
   - type: ShowSyndicateIcons
 

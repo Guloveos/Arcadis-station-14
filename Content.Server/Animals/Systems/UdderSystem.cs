@@ -6,21 +6,23 @@ using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Udder;
 using Content.Shared.Verbs;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Animals.Systems;
 
 /// <summary>
 ///     Gives ability to produce milkable reagents, produces endless if the
-///     owner has no HungerComponent
+///     owner has no SatiationComponent
 /// </summary>
 internal sealed class UdderSystem : EntitySystem
 {
-    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly SatiationSystem _satiation = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -52,13 +54,14 @@ internal sealed class UdderSystem : EntitySystem
                 continue;
 
             // Actually there is food digestion so no problem with instant reagent generation "OnFeed"
-            if (EntityManager.TryGetComponent(uid, out HungerComponent? hunger))
+            if (EntityManager.TryGetComponent(uid, out SatiationComponent? satiation)
+                && _satiation.TryGetSatiationThreshold((uid, satiation), udder.UsedSatiation, out var threshold))
             {
                 // Is there enough nutrition to produce reagent?
-                if (_hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
+                if (threshold < SatiationThreashold.Okay)
                     continue;
 
-                _hunger.ModifyHunger(uid, -udder.HungerUsage, hunger);
+                _satiation.ModifySatiation((uid, satiation), udder.UsedSatiation, -udder.SatiationUsage);
             }
 
             if (!_solutionContainerSystem.ResolveSolution(uid, udder.SolutionName, ref udder.Solution))

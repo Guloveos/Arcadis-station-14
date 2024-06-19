@@ -9,12 +9,14 @@ using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Nutrition.AnimalHusbandry;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using Content.Shared.Nutrition;
 using Content.Shared.Storage;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Nutrition.EntitySystems;
 
@@ -24,7 +26,7 @@ namespace Content.Server.Nutrition.EntitySystems;
 public sealed class AnimalHusbandrySystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly SatiationSystem _satiation = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -121,8 +123,10 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (TryComp<InteractionPopupComponent>(uid, out var interactionPopup))
             _audio.PlayPvs(interactionPopup.InteractSuccessSound, uid);
 
-        _hunger.ModifyHunger(uid, -component.HungerPerBirth);
-        _hunger.ModifyHunger(partner, -component.HungerPerBirth);
+        foreach (var (satiationType, consumed) in component.SatiationPerBirth)
+        {
+            _satiation.ModifySatiation(uid, satiationType, -consumed);
+        }
 
         component.GestationEndTime = _timing.CurTime + component.GestationDuration;
         component.Gestating = true;
@@ -148,11 +152,14 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (_mobState.IsIncapacitated(uid))
             return false;
 
-        if (TryComp<HungerComponent>(uid, out var hunger) && _hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
-            return false;
-
-        if (TryComp<ThirstComponent>(uid, out var thirst) && thirst.CurrentThirstThreshold < ThirstThreshold.Okay)
-            return false;
+        if (TryComp<SatiationComponent>(uid, out var satiation))
+        {
+            foreach (var (satiationType, consumed) in component!.SatiationPerBirth)
+            {
+                if (_satiation.IsSatiationBelowState((uid, satiation), satiationType, SatiationThreashold.Okay))
+                    return false;
+            }
+        }
 
         return true;
     }
