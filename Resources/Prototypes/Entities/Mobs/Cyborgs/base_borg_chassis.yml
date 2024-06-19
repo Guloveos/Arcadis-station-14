@@ -128,7 +128,7 @@
     - SlowedDown
     - Flashed
   - type: TypingIndicator
-    proto: robot
+    typingIndicatorOverrideList: [robot]
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
