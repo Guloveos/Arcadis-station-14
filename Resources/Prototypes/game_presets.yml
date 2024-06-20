@@ -98,6 +98,7 @@
   showInVote: false
   rules:
     - Traitor
+    - TraitorVariations
     - SubGamemodesRule
     - BasicStationEventScheduler
     - GameRuleMeteorScheduler
