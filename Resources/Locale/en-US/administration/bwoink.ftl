@@ -14,3 +14,7 @@ bwoink-system-typing-indicator = {$players} {$count ->
 admin-bwoink-play-sound = Bwoink?
 
 bwoink-title-none-selected = None selected
+
+bwoink-system-player-disconnecting = has disconnected.
+bwoink-system-player-reconnecting = has reconnected.
+bwoink-system-player-banned = has been banned for: {$banReason}
