@@ -2223,7 +2223,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: SpawnClownSpider
+- proto: SpawnMobHonkBot
   entities:
   - uid: 312
     components:
@@ -2239,23 +2239,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-6.5
-      parent: 1
-- proto: SpiderWebClown
-  entities:
-  - uid: 376
-    components:
-    - type: Transform
-      pos: -4.5,-6.5
-      parent: 1
-  - uid: 377
-    components:
-    - type: Transform
-      pos: -2.5,-4.5
-      parent: 1
-  - uid: 378
-    components:
-    - type: Transform
-      pos: -2.5,-5.5
       parent: 1
 - proto: StatueBananiumClown
   entities:
