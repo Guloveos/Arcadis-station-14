@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Database;
+using Content.Shared.Glue;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Movement.Events;
@@ -482,6 +483,9 @@ public abstract partial class SharedBuckleSystem
             return false;
 
         if (buckle.Comp.BuckledTo is not { } strapUid)
+            return false;
+
+        if (HasComp<GluedComponent>(buckle.Comp.BuckledTo))
             return false;
 
         if (!TryComp(strapUid, out StrapComponent? strapComp))
