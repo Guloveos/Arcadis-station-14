@@ -94,6 +94,17 @@
     collection: AmbienceGeneral
   rules: AlwaysTrue
 
+# Ambient loops
+
+- type: ambientLoop
+  id: Planet
+  sound:
+    collection: AmbientLoopWind
+    params:
+      volume: 13
+  rules: OnMapGrid
+  priority: 1
+
 # Sound collections
 - type: soundCollection
   id: AmbienceEngineering
@@ -244,10 +255,11 @@
     - /Audio/Ambience/ambimine.ogg
 
 ## Background noise on station, separate to ambient music.
+
 - type: soundCollection
-  id: AmbienceStation
+  id: AmbientLoopWind
   files:
-    - /Audio/Ambience/shipambience.ogg
+    - /Audio/Ambience/ambiwind.ogg
 
 # Rules
 - type: rules
