@@ -1,12 +1,13 @@
-using Content.Shared.Maps;
-using Robust.Shared.Prototypes;
-
 namespace Content.Shared.Procedural.PostGeneration;
 
 /// <summary>
 /// Connects room entrances via corridor segments.
 /// </summary>
-public sealed partial class CorridorPostGen : IPostDunGen
+/// <remarks>
+/// Dungeon data keys are:
+/// - FallbackTile
+/// </remarks>
+public sealed partial class CorridorPostGen : IDunGenLayer
 {
     /// <summary>
     /// How far we're allowed to generate a corridor before calling it.
@@ -16,9 +17,6 @@ public sealed partial class CorridorPostGen : IPostDunGen
     /// </remarks>
     [DataField]
     public int PathLimit = 2048;
-
-    [DataField]
-    public ProtoId<ContentTileDefinition> Tile = "FloorSteel";
 
     /// <summary>
     /// How wide to make the corridor.

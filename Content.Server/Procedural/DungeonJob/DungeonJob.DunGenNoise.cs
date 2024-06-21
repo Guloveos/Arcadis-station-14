@@ -4,19 +4,21 @@ using Content.Shared.Maps;
 using Content.Shared.Procedural;
 using Content.Shared.Procedural.DungeonGenerators;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Procedural;
+namespace Content.Server.Procedural.DungeonJob;
 
 public sealed partial class DungeonJob
 {
-    private async Task<Dungeon> GenerateNoiseDungeon(NoiseDunGen dungen, EntityUid gridUid, MapGridComponent grid,
-        int seed)
+    /// <summary>
+    /// <see cref="NoiseDunGen"/>
+    /// </summary>
+    private async Task<Dungeon> GenerateNoiseDungeon(Vector2i position, DungeonData data, NoiseDunGen dungen, HashSet<Vector2i> reservedTiles, int seed)
     {
         var rand = new Random(seed);
         var tiles = new List<(Vector2i, Tile)>();
+        var matrix = Matrix3Helpers.CreateTranslation(position);
 
         foreach (var layer in dungen.Layers)
         {
@@ -80,14 +82,20 @@ public sealed partial class DungeonJob
                     if (value < layer.Threshold)
                         continue;
 
-                    roomArea = roomArea.UnionTile(node);
                     foundNoise = true;
                     noiseFill = true;
+
+                    // Still want the tile to gen as normal but can't do anything with it.
+                    if (reservedTiles.Contains(node))
+                        break;
+
+                    roomArea = roomArea.UnionTile(node);
                     var tileDef = _tileDefManager[layer.Tile];
                     var variant = _tile.PickVariant((ContentTileDefinition) tileDef, rand);
+                    var adjusted = Vector2.Transform(node + _grid.TileSizeHalfVector, matrix).Floored();
 
-                    tiles.Add((node, new Tile(tileDef.TileId, variant: variant)));
-                    roomTiles.Add(node);
+                    tiles.Add((adjusted, new Tile(tileDef.TileId, variant: variant)));
+                    roomTiles.Add(adjusted);
                     tileCount++;
                     break;
                 }
@@ -123,7 +131,7 @@ public sealed partial class DungeonJob
 
             foreach (var tile in roomTiles)
             {
-                center += tile + grid.TileSizeHalfVector;
+                center += tile + _grid.TileSizeHalfVector;
             }
 
             center /= roomTiles.Count;
@@ -132,15 +140,8 @@ public sealed partial class DungeonJob
             ValidateResume();
         }
 
-        grid.SetTiles(tiles);
-
+        _maps.SetTiles(_gridUid, _grid, tiles);
         var dungeon = new Dungeon(rooms);
-
-        foreach (var tile in tiles)
-        {
-            dungeon.RoomTiles.Add(tile.Item1);
-        }
-
         return dungeon;
     }
 }

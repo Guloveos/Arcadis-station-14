@@ -1,23 +1,27 @@
 using System.Linq;
-using System.Numerics;
 using System.Threading.Tasks;
 using Content.Shared.Procedural;
 using Content.Shared.Procedural.PostGeneration;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Procedural;
+namespace Content.Server.Procedural.DungeonJob;
 
 public sealed partial class DungeonJob
 {
     /// <summary>
-    /// Tries to connect rooms via worm-like corridors.
+    /// <see cref="WormCorridorPostGen"/>
     /// </summary>
-    private async Task PostGen(WormCorridorPostGen gen, Dungeon dungeon, EntityUid gridUid, MapGridComponent grid, Random random)
+    private async Task PostGen(WormCorridorPostGen gen, DungeonData data, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
     {
+        if (!data.Tiles.TryGetValue(DungeonDataKey.FallbackTile, out var tileProto) || !_prototype.TryIndex(tileProto, out var tileDef))
+        {
+            _sawmill.Error($"Tried to run {nameof(WormCorridorPostGen)} without any dungeon data set which is unsupported");
+            return;
+        }
+
         var networks = new List<(Vector2i Start, HashSet<Vector2i> Network)>();
 
         // List of places to start from.
@@ -32,7 +36,7 @@ public sealed partial class DungeonJob
                 networks.Add((entrance, network));
 
                 // Point away from the room to start with.
-                startAngles.Add(entrance, (entrance + grid.TileSizeHalfVector - room.Center).ToAngle());
+                startAngles.Add(entrance, (entrance + _grid.TileSizeHalfVector - room.Center).ToAngle());
             }
         }
 
@@ -46,7 +50,7 @@ public sealed partial class DungeonJob
             // Find a random network to worm from.
             var startIndex = (i % networks.Count);
             var startPos = networks[startIndex].Start;
-            var position = startPos + grid.TileSizeHalfVector;
+            var position = startPos + _grid.TileSizeHalfVector;
 
             var remainingLength = gen.Length;
             worm.Clear();
@@ -108,7 +112,7 @@ public sealed partial class DungeonJob
                 costSoFar[startNode] = 0f;
                 var count = 0;
 
-                await SuspendIfOutOfTime();
+                await SuspendDungeon();
                 if (!ValidateResume())
                     return;
 
@@ -174,9 +178,9 @@ public sealed partial class DungeonJob
         WidenCorridor(dungeon, gen.Width, main.Network);
         dungeon.CorridorTiles.UnionWith(main.Network);
         BuildCorridorExterior(dungeon);
+        dungeon.RefreshAllTiles();
 
         var tiles = new List<(Vector2i Index, Tile Tile)>();
-        var tileDef = _prototype.Index(gen.Tile);
 
         foreach (var tile in dungeon.CorridorTiles)
         {
