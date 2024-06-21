@@ -10,6 +10,7 @@
     weight: 5
     reoccurrenceDelay: 30
     duration: 1
+    maxOccurrences: 1 # should be the same as [copies] in shuttle_incoming_event.yml
   - type: RuleGrids
   - type: LoadMapRule
 
@@ -17,6 +18,8 @@
   parent: BaseUnknownShuttleRule
   id: UnknownShuttleCargoLost
   components:
+  - type: StationEvent
+    maxOccurrences: 2 # should be the same as [copies] in shuttle_incoming_event.yml
   - type: LoadMapRule
     preloadedGrid: ShuttleCargoLost
 
@@ -24,6 +27,9 @@
   parent: BaseUnknownShuttleRule
   id: UnknownShuttleTravelingCuisine
   components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming
+    maxOccurrences: 2 # should be the same as [copies] in shuttle_incoming_event.yml
   - type: LoadMapRule
     preloadedGrid: TravelingCuisine
 
@@ -31,23 +37,31 @@
   parent: BaseUnknownShuttleRule
   id: UnknownShuttleDisasterEvacPod
   components:
+  - type: StationEvent
+    startAnnouncement: station-event-unknown-shuttle-incoming
+    maxOccurrences: 3 # should be the same as [copies] in shuttle_incoming_event.yml
   - type: LoadMapRule
     preloadedGrid: DisasterEvacPod
 
-- type: entity
-  parent: BaseUnknownShuttleRule
-  id: UnknownShuttleHonki
-  components:
-  - type: StationEvent
-    weight: 2
-  - type: LoadMapRule
-    preloadedGrid: Honki
+# The power of 3 clowns proved too strong for the players and had to be 1984'ed. Replace this with a more engaging clown shuttle.
+# - type: entity
+  # parent: BaseUnknownShuttleRule
+  # id: UnknownShuttleHonki
+  # components:
+  # - type: StationEvent
+    # startAnnouncement: station-event-unknown-shuttle-incoming #!!
+    # weight: 2
+  # - type: LoadMapRule
+    # preloadedGrid: Honki
 
 - type: entity
   parent: BaseUnknownShuttleRule
   id: UnknownShuttleSyndieEvacPod
   components:
   - type: StationEvent
+    startAnnouncement: null # It should be silent.
     weight: 2
+    maxOccurrences: 2 # should be the same as [copies] in shuttle_incoming_event.yml
   - type: LoadMapRule
     preloadedGrid: SyndieEvacPod
+
