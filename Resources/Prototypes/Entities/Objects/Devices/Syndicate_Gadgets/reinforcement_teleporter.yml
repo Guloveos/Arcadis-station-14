@@ -31,6 +31,30 @@
 
 - type: entity
   parent: ReinforcementRadioSyndicate
+  id: ReinforcementRadioSyndicategirlNukeops # Syndigirl
+  suffix: NukeOps
+  components:
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanSyndicateAgentBasegirl
+  - type: Grammar
+  attributes:
+    proper: true
+    gender: female
+
+- type: entity
+  parent: ReinforcementRadioSyndicate
+  id: ReinforcementRadioSyndicategirlel # Syndigirl
+  suffix: syndi
+  components:
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanSyndicateAgentBasegirl
+  - type: Grammar
+  attributes:
+    proper: true
+    gender: female
+
+- type: entity
+  parent: ReinforcementRadioSyndicate
   id: ReinforcementRadioSyndicateAncestor
   name: syndicate genetic ancestor reinforcement radio
   description: Calls in a specially trained ancestor of your choosing to assist you.

@@ -23,6 +23,30 @@
       - Syndicate
 
 - type: entity
+  parent: MobHuman
+  id: MobHumanSyndicateAgentBasegirl
+  name: syndicate girl
+  suffix: Human, Base
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+      hair: HumanHairFloorlengthBedhead
+    - type: Loadout
+      prototypes: [SyndicateOperativeGearExtremelyBasic]
+    - type: RandomMetadata
+      nameSegments: [names_death_commando]
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: Grammar
+      attributes:
+        proper: true
+        gender: female
+    - type: Vocal
+      sounds:
+        Female: FemaleHuman
+
+- type: entity
   parent: MobHumanSyndicateAgentBase
   id: MobHumanSyndicateAgent
   name: syndicate agent

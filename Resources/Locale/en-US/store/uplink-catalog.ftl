@@ -127,6 +127,9 @@ uplink-reinforcement-radio-ancestor-desc =  Call in a trained ancestor of your c
 uplink-reinforcement-radio-name = Reinforcement Teleporter
 uplink-reinforcement-radio-desc =  Radio in a reinforcement agent of extremely questionable quality. No off button, buy this if you're ready to party. They have a pistol with no reserve ammo, and a knife. That's it.
 
+uplink-reinforcement-girl-radio-name = Reinforcement syndicate girl Teleporter
+uplink-reinforcement-girl-radio-desc =  After popular demand you can now have a syndicate girl help you complete your objectives
+
 uplink-reinforcement-radio-cyborg-assault-name = Syndicate Assault Cyborg Teleporter
 uplink-reinforcement-radio-cyborg-assault-desc =  A lean, mean killing machine with access to an Energy Sword, LMG, Cryptographic Sequencer, and a Pinpointer.
 

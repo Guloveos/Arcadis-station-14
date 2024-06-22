@@ -899,6 +899,39 @@
       tags:
       - NukeOpsUplink
 
+#girl
+- type: listing
+  id: UplinkReinforcementRadioSyndicatecoolgirl
+  name: uplink-reinforcement-girl-radio-name
+  description: uplink-reinforcement-girl-radio-desc
+  productEntity: ReinforcementRadioSyndicategirlel
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-girl }
+  cost:
+    Telecrystal: 17
+  categories:
+  - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementgirlRadioSyndicateNukeops # Version for Nukeops that spawns an agent with the NukeOperative component.
+  name: uplink-reinforcement-girl-radio-name
+  description: uplink-reinforcement-girl-radio-desc
+  productEntity: ReinforcementRadioSyndicategirlNukeops
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-girl }
+  cost:
+    Telecrystal: 17
+  categories:
+  - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
 - type: listing
   id: UplinkReinforcementRadioSyndicate
   name: uplink-reinforcement-radio-name
