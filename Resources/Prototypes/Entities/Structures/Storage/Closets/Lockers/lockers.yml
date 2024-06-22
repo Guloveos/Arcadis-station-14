@@ -30,6 +30,19 @@
     stateDoorOpen: secure_open
     stateDoorClosed: secure_door
 
+- type: entity
+  id: LockerNTPD
+  parent: LockerBaseSecure
+  name: NTPD locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: NTPD
+    stateDoorOpen: NTPD_open
+    stateDoorClosed: NTPD_door
+  - type: AccessReader
+    access: [["NTPD"]]
+
 # Cargo
 - type: entity
   id: LockerQuarterMaster
@@ -461,3 +474,4 @@
     stateBaseClosed: hop
     stateDoorOpen: hop_open
     stateDoorClosed: representative_door
+

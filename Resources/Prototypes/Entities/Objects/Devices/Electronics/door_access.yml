@@ -289,6 +289,15 @@
 
 - type: entity
   parent: DoorElectronics
+  id: DoorElectronicsNTPD
+  suffix: NTPD, Locked
+  components:
+  - type: AccessReader
+    access: [["NTPD"]]
+
+
+- type: entity
+  parent: DoorElectronics
   id: DoorElectronicsExternal
   suffix: External, Locked
   components:

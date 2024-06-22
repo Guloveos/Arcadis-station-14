@@ -49,6 +49,57 @@
     fireStacks: -4
 
 - type: entity
+  name: The one whom enjoys game's voidaxe
+  parent: BaseItem
+  id: VoidAxe
+  description: When you look into the void you see yourself, but slightly different.
+  components:
+  - type: Tag
+    tags:
+    - FireAxe
+  - type: Sharp
+  - type: Sprite
+    sprite: Objects\Weapons\Melee\fireaxe_toweg.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: 135
+    swingLeft: true
+    attackRate: 0.75
+    damage:
+      types:
+        # axes are kinda like sharp hammers, you know?
+        Heat: 50
+        Blunt: 1
+        Slash: 15
+        Structural: 50
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 10
+        Structural: 40
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/fireaxe.rsi
+    quickEquip: false
+    slots:
+    - back
+  - type: Tool
+    qualities:
+      - Prying
+  - type: ToolTileCompatible
+  - type: Prying
+  - type: UseDelay
+    delay: 1
+  - type: StealTarget
+    stealGroup: FireAxe
+  - type: IgniteOnMeleeHit
+    fireStacks: -4
+
+- type: entity
   id: FireAxeFlaming
   name: fire axe
   parent: FireAxe

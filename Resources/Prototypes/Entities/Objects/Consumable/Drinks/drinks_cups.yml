@@ -71,13 +71,44 @@
       Glass: 25
 
 - type: entity
-  parent: DrinkBaseMug
-  id: DrinkMug
-  name: mug
-  description: A plain white mug.
+  parent: DrinkBaseCup
+  id: StupidBaseMug
+  abstract: true
+  name: Stupid mug
+  description: A mug, It was some writing on the back tho thats says "SethDiedAgain137 — WHAT WHAT HAPPENED Johnny — HES DELETING THE EVIDENCE!!! Federal Bureau of Investigation — EVERYONE SAW THAT SETH Guloveos - OOOHHHHH Federal Bureau of Investigation — THIS IS GOING IN MY HORNY SETH COMPILATION Madformoose — SETH YOU ARE A MENACE!! SethDiedAgain137 — NOOO DON'T ADD TO THE 4 TERABYTES OF EVIDENCE Madformoose — Your FACE is going in my cringe comp gul Goteem SethDiedAgain137 — Today at 10:38 AM Madformoose more like... Federal Bureau of Investigation — WE WOULDN'T HAVE THAT PROBLEM IF YOU HAD JUST LET US KIDNAP YOU AND SEND YOU TO EUROPA RAAAAAH SethDiedAgain137 Uhh... Uhm... DegeneratelookingMoose  Federal Bureau of Investigation — STRONG WORDS FROM SOMEONE WHO'S THE TARGET OF A FOUR TERABYTE HORNY FOLDER Madformoose — RAAAAGH!! SETHDIEDAGAIN MORE LIKE SETHDEADMEMEAGAIN Guloveos — BOLD WORDS TO SAY TO SOMEONE WHO IS MAKING A FORK! Federal Bureau of Investigation — YOU FUCKED THE BELL IN NULL SPACE YOU BASTERD SethDiedAgain137 — MADFORMOOSE MORE LIKE DADWHOLEFTMOOSE Madformoose — I'M GONNA GET REAL ANGRYFORMOOSE IF YOU KEEP BEING MEAN TO ME SETH Madformoose — SETH COME TO EUROPA SethDiedAgain137 — Damn, you say I'm the degenerate but look at Moose here He's coming to Europa iluvj3sus — this feels like watching my parents fight" you have no idea who these people are or why they were fighting but you feel like Guloveos was right.
   components:
   - type: Sprite
     sprite: Objects/Consumable/Drinks/mug.rsi
+    layers:
+      - state: icon-0
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: icon-3
+        visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: icon-
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 25
+
+- type: entity
+  parent: DrinkBaseMug
+  id: DrinkMug
+  name: mug
+  description: A mug,
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/mug.rsi
+
+- type: entity
+  parent: DrinkBaseMug
+  id: GuloMug
+  name: cool mug
+  description: A mug, it's brown with a S on it. You feel like someone put a lot of work in this.
+  components:
+  - type: Sprite
+    sprite: Objects\Consumable\Drinks\seth_mug.rsi
 
 - type: entity
   parent: DrinkBaseMug

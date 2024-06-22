@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: AutolatheMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: autolathe machine board
@@ -813,6 +813,18 @@
     prototype: Thruster
     stackRequirements:
       Capacitor: 4
+      Steel: 5
+
+- type: entity
+  id: VoasiumjetMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Voasium jet machine board
+  components:
+  - type: MachineBoard
+    prototype: Voasiumjet
+    requirements:
+      Capacitor: 20
+    materialRequirements:
       Steel: 5
 
 - type: entity

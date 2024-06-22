@@ -876,6 +876,40 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
 
+#NTPD
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitNTPD
+  name: NTPD hardsuit
+  description: Armor never seen by most living things.
+  components:
+  - type: Sprite
+    sprite: Clothing\OuterClothing\Hardsuits\ntpdarmor.rsi
+  - type: Clothing
+    sprite: Clothing\OuterClothing\Hardsuits\ntpdarmor.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    coefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.1 #best armor in the game
+        Slash: 0.1
+        Piercing: 0.1
+        Heat: 0.1
+        Radiation: 0.1
+        Caustic: 0.1
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNTPD
+
 #CBURN Hardsuit
 - type: entity
   parent: ClothingOuterHardsuitBase

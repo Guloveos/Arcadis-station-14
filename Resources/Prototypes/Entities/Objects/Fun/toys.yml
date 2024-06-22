@@ -299,6 +299,17 @@
     state: plushie_lizard_mirrored
 
 - type: entity
+  parent: PlushieLizard
+  id: PlushieLizardhacker
+  name: cool plushie
+  description: A cool plushie! you feel like it would be good at making stations.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    state: hacker_lizard
+
+- type: entity
   parent: BasePlushie
   id: PlushieSpaceLizard #ᵂᵉʰ!
   name: space lizard plushie

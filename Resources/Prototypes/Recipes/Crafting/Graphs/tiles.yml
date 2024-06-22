@@ -91,22 +91,6 @@
       entity: FloorTileItemDark
 
 - type: constructionGraph
-  id: TileFlesh
-  start: start
-  graph:
-    - node: start
-      edges:
-        - to: fleshTile
-          completed:
-            - !type:SetStackCount
-              amount: 4
-          steps:
-            - material: MeatSheets
-              amount: 1
-    - node: fleshTile
-      entity: FloorTileItemFlesh
-
-- type: constructionGraph
   id: TileWoodLarge
   start: start
   graph:

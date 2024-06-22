@@ -106,6 +106,15 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: ClothingNeckCloakToweg
+  name: The one whom enjoys game's cloak
+  description: It's nothingness.
+  components:
+  - type: Sprite
+    sprite: Clothing\Neck\Cloaks\Toweg.rsi
+
+- type: entity
+  parent: ClothingNeckBase
   id: ClothingNeckCloakCapFormal
   name: captain's formal cloak
   description: A lavish and decorated cloak for special occasions.

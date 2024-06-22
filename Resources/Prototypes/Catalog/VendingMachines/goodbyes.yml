@@ -17,6 +17,12 @@
     count: 4
 
 - type: localizedDataset
+  id: NTPDGoodbyes
+  values:
+    prefix: thankyou-NTPD-
+    count: 4
+
+- type: localizedDataset
   id: CigaretteMachineGoodbyes
   values:
     prefix: thankyou-cigs-

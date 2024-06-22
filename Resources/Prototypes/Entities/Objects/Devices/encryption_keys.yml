@@ -58,6 +58,21 @@
 
 - type: entity
   parent: EncryptionKey
+  id: EncryptionKeyNTPD
+  name: NTPD encryption key
+  description: An encryption key used by captain's bosses bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NTPD
+    defaultChannel: NTPD
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
   id: EncryptionKeyStationMaster
   name: station master encryption key
   description: An encryption key used by station's bosses.

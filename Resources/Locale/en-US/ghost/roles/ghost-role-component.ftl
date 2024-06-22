@@ -143,6 +143,9 @@ ghost-role-information-cerberus-description = Obey your master. Spread chaos.
 ghost-role-information-ert-leader-name = ERT Leader
 ghost-role-information-ert-leader-description = Lead a team of specialists to resolve the station's issues.
 
+ghost-role-information-NTPD = NTPD
+ghost-role-information-NTPD-description = Get rid of any anomalys on the station, Keep an eye out for 0305-6.
+
 ghost-role-information-ert-chaplain-name = ERT Chaplain
 ghost-role-information-ert-chaplain-description = Assist with mourning to resolve the station's crew moral issues.
 
@@ -172,6 +175,9 @@ ghost-role-information-loneop-rules = You are a [color=red][bold]Team Antagonist
 
 ghost-role-information-behonker-name = Behonker
 ghost-role-information-behonker-description = You are an antagonist, bring death and honks to those who do not follow the honkmother.
+
+ghost-role-information-Meathunk-name = Meat Hunk
+ghost-role-information-Meathunk-description = Battle for honor! battle in the name of the great meat!
 
 ghost-role-information-hellspawn-name = Hellspawn
 ghost-role-information-hellspawn-description = Bring death to those who do not follow the great god Nar'Sie.

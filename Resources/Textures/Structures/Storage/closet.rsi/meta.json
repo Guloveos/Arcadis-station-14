@@ -125,6 +125,15 @@
       "name": "cabinet_open"
     },
     {
+      "name": "NTPD"
+    },
+    {
+      "name": "NTPD_door"
+    },
+    {
+      "name": "NTPD_open"
+    },
+    {
       "name": "cap"
     },
     {

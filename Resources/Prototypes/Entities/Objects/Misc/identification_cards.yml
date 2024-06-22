@@ -464,6 +464,26 @@
     - CentralCommand
 
 - type: entity
+  parent: IDCardStandard
+  id: CentcomIDCardNTPD
+  name: NTPD officer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: ntpd
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: IdCard
+    jobTitle: Central Commander
+    jobIcon: JobIconNanotrasen
+  - type: Access
+    groups:
+    - TrueAllAccess
+    tags:
+    - NTPD
+
+- type: entity
   parent: CentcomIDCard
   id: ERTLeaderIDCard
   name: ERT leader ID card

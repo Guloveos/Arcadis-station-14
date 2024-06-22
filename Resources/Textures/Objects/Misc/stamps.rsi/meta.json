@@ -17,6 +17,9 @@
             "name": "stamp-centcom"
         },
         {
+            "name": "stamp-ntpd"
+        },
+        {
             "name": "stamp-chaplain"
         },
         {

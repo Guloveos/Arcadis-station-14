@@ -52,3 +52,7 @@
   license: "CC0-1.0"
   copyright: "psychpsyo on Github/Twitter"
   source: "https://github.com/space-wizards/space-station-14"
+
+- files: ["Hunted.webp"]
+  copyright: "guloveos on discord"
+  source: "Custom"

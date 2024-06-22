@@ -40,6 +40,22 @@
     - MagazineMagnum
 
 - type: startingGear
+  id: NTPDGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNTPD
+    back: ClothingBackpackHoldingNTPD
+    shoes: ClothingShoesBootsMagAdvNTPD
+    mask: ClothingMaskGasNTPD
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTPD
+    id: NTPDPDA
+    ears: ClothingHeadsetNTPD
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponNTPDPulsePistol
+    pocket2: FlashlightSeclite
+
+- type: startingGear
   id: ERTLeaderGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader

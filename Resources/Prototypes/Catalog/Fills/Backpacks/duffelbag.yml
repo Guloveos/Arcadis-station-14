@@ -14,6 +14,22 @@
       - id: Scalpel
 
 - type: entity
+  parent: ClothingBackpackHoldingNTPD
+  id: ClothingBackpackNTPDFilled
+  name: NTPD mission bag of holding
+  description: "The perfect thing for killing enemys and rewriting history!"
+  components:
+  - type: StorageFill
+    contents:
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: CombatMedipen
+        amount: 5
+      - id: MedkitCombatFilled
+      - id: EnergySword
+      - id: EnergyShield
+
+- type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
   id: ClothingBackpackDuffelSyndicateFilledMedical
   name: syndicate surgical duffel bag

@@ -32,6 +32,21 @@
     state: impact_laser
 
 - type: hitscan
+  id: Darklaser
+  damage:
+    types:
+      Heat: 15
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_soul
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_soul
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_soul
+
+- type: hitscan
   id: RedLaserPractice
   damage:
     types:

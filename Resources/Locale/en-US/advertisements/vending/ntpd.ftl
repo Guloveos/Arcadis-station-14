@@ -1,0 +1,9 @@
+﻿advertisement-NTPD-1 = Look your best while rewriting history!
+advertisement-NTPD-2 = I bet you would look nice in blue!
+advertisement-NTPD-3 = Who does'nt love the color blue!
+advertisement-NTPD-4 = ERROR I'M LOOKING TO FASHIONABLE ERROR
+advertisement-NTPD-5 = You gotta look nice while killing!
+thankyou-NTPD-1 = Enjoy your killing!
+thankyou-NTPD-2 = Go get em!
+thankyou-NTPD-3 = Rewrite it!.
+thankyou-NTPD-4 = The NTPD thanks you for keeping your clothes on.

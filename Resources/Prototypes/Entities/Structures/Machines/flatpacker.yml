@@ -1,8 +1,8 @@
 ﻿- type: entity
   id: MachineFlatpacker
   parent: [ BaseMachinePowered, ConstructibleMachine ]
-  name: Flatpacker 1001
-  description: An industrial machine used for expediting machine construction across the station.
+  name: Broken Flatpacker 1001
+  description: Some dumbass broke the code for this flatpacker...
   components:
   - type: Sprite
     sprite: Structures/Machines/flatpacker.rsi

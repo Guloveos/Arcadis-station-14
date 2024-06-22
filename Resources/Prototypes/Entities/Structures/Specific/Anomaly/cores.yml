@@ -168,6 +168,19 @@
     color: "#793a80"
     castShadows: false
 
+- type: entity
+  parent: BaseAnomalyCore
+  id: AnomalyCorevoid
+  suffix: void
+  components:
+  - type: Sprite
+    sprite: Structures\Specific\Anomalies\Cores\void_core.rsi
+  - type: PointLight
+    radius: 1.5
+    energy: 2.0
+    color: "#170101"
+    castShadows: true
+
 # Inert cores
 
 - type: entity

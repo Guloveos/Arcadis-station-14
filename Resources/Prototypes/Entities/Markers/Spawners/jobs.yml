@@ -511,6 +511,18 @@
       - state: ertleader
 
 - type: entity
+  id: SpawnPointNTPDOP
+  parent: SpawnPointJobBase
+  name: NTPD Operative
+  components:
+  - type: SpawnPoint
+    job_id: NTPDOP
+  - type: Sprite
+    layers:
+      - state: green
+      - state: NTPDeva
+
+- type: entity
   id: SpawnPointERTChaplain
   parent: SpawnPointJobBase
   name: ERTchaplain

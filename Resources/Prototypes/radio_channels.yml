@@ -14,6 +14,14 @@
   longRange: true
 
 - type: radioChannel
+  id: NTPD
+  name: chat-radio-NTPD
+  keycode: 'p'
+  frequency: 1111
+  color: "#003154"
+  longRange: true
+
+- type: radioChannel
   id: Command
   name: chat-radio-command
   keycode: 'c'

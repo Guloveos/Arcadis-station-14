@@ -655,6 +655,25 @@
     state: pda-centcom
 
 - type: entity
+  parent: BasePDA
+  id: NTPDPDA
+  name: NTPD PDA
+  description: An NTPD PDA, now say that 5 times.
+  components:
+  - type: Pda
+    id: CentcomIDCardNTPD
+    state: pda-ntpd
+    penSlot:
+      startingItem: NTPDPen
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#00842e"
+  - type: Icon
+    state: pda-ntpd
+
+- type: entity
   parent: CentcomPDA
   id: AdminPDA
   name: Admin PDA

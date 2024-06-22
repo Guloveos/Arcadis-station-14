@@ -59,6 +59,17 @@
     sprite: Clothing/OuterClothing/Coats/gentlecoat.rsi
 
 - type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatFBI
+  name: FBI coat
+  description: A coat used by an old agency on the human homeworld, the Federal Bureau of Investigation. The person who wore this must have put a lot of work into whatever they did
+  components:
+  - type: Sprite
+    sprite: Clothing\OuterClothing\Coats\FBI_coat.rsi
+  - type: Clothing
+    sprite: Clothing\OuterClothing\Coats\FBI_coat.rsi
+
+- type: entity
   abstract: true
   parent: AllowSuitStorageClothing
   id: ClothingOuterArmorHoS
@@ -112,6 +123,17 @@
     sprite: Clothing/OuterClothing/Coats/jensencoat.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodChaplainHood
+
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase]
+  id: ClothingOuterCoatNTPDENGI
+  name: NTPD engineer armored coat
+  description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a engineering presence.
+  components:
+  - type: Sprite
+    sprite: Clothing\OuterClothing\Coats\NTPD-Engi.rsi
+  - type: Clothing
+    sprite: Clothing\OuterClothing\Coats\NTPD-Engi.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase

@@ -101,10 +101,10 @@
     count: 10
 
 - type: localizedDataset
-  id: DiscountDansAds
+  id: NTPDad
   values:
-    prefix: advertisement-discount-
-    count: 9
+    prefix: advertisement-NTPD-
+    count: 5
 
 - type: localizedDataset
   id: DonutAds

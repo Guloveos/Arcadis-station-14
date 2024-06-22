@@ -264,6 +264,24 @@
       board: [ DoorElectronicsCentralCommand ]
 
 - type: entity
+  parent: AirlockNTPD
+  id: AirlockNTPDLocked
+  suffix: NTPD, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNTPD ]
+
+- type: entity
+  parent: AirlockMerc
+  id: AirlockMercLocked
+  suffix: Merc, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
   parent: AirlockCommand
   id: AirlockCommandLocked
   suffix: Command, Locked
@@ -401,6 +419,7 @@
       board: [ DoorElectronicsExternal ]
 
 # Glass Airlocks
+
 - type: entity
   parent: AirlockGlass
   id: AirlockServiceGlassLocked
@@ -627,6 +646,15 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  parent: AirlockNTPDGlass
+  id: AirlockNTPDGlassLocked
+  suffix: NTPD, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNTPD  ]
 
 - type: entity
   parent: AirlockCommandGlass

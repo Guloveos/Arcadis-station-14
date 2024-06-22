@@ -22,6 +22,17 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtNTPD
+  name: NTPD jumpskirt
+  description: It's a blue jumpskirt with some Dark markings.
+  components:
+  - type: Sprite
+    sprite: Clothing\Uniforms\Jumpskirt\NTPD.rsi
+  - type: Clothing
+    sprite: Clothing\Uniforms\Jumpskirt\NTPD.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCargo
   name: cargo tech jumpskirt
   description: A sturdy jumpskirt, issued to members of the Cargo department.

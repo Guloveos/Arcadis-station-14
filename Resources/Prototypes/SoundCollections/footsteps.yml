@@ -189,6 +189,13 @@
   id: FootstepBlood
   files:
   - /Audio/Effects/Footsteps/gib_step.ogg
+
+- type: soundCollection
+  id: Footstepsoul
+  files:
+  - /Audio/Effects/Footsteps/soul2.ogg
+  - /Audio/Effects/Footsteps/soul3.ogg
+  - /Audio/Effects/Footsteps/soul4.ogg
   
 - type: soundCollection
   id: FootstepSticky

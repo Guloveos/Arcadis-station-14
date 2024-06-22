@@ -1,6 +1,6 @@
 - type: entity
   id: BaseMeteor
-  name: meteor
+  name: HELP
   description: You prefer them when they're burning up in the atmosphere.
   abstract: true
   components:

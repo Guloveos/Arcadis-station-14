@@ -72,6 +72,7 @@
           - /Maps/Ruins/syndicate_dropship.yml
           - /Maps/Ruins/whiteship_ancient.yml
           - /Maps/Ruins/whiteship_bluespacejumper.yml
+          - /Maps/Ruins/NTPD_destroyed_station.yml
 
 - type: entity
   id: BaseStationCentcomm

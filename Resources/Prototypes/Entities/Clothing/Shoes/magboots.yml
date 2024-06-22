@@ -58,6 +58,30 @@
 
 - type: entity
   parent: ClothingShoesBootsMag
+  id: ClothingShoesBootsMagAdvNTPD
+  name: advanced NTPD magboots
+  description: State-of-the-art magnetic boots that do not slow down their wearer.
+  components:
+  - type: Sprite
+    sprite: Clothing\Shoes\Boots\magboots-NTPD.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing\Shoes\Boots\magboots-NTPD.rsi
+  - type: Magboots
+    toggleAction: ActionToggleMagbootsAdvanced
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+    enabled: false
+  - type: NoSlip
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StaticPrice
+    price: 750
+
+- type: entity
+  parent: ClothingShoesBootsMag
   id: ClothingShoesBootsMagSci
   components:
   - type: Sprite
@@ -134,6 +158,14 @@
   - type: InstantAction
     icon: { sprite: Clothing/Shoes/Boots/magboots-advanced.rsi, state: icon }
     iconOn: Clothing/Shoes/Boots/magboots-advanced.rsi/icon-on.png
+
+- type: entity
+  id: ActionToggleMagbootsAdvancedNTPD
+  parent: ActionBaseToggleMagboots
+  components:
+  - type: InstantAction
+    icon: { sprite: Clothing\Shoes\Boots\magboots-NTPD.rsi, state: icon }
+    iconOn: Clothing\Shoes\Boots\magboots-NTPD.rsi/icon-on.png
 
 - type: entity
   id: ActionToggleMagbootsSci
