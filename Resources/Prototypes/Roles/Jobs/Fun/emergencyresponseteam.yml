@@ -56,6 +56,20 @@
     pocket2: FlashlightSeclite
 
 - type: startingGear
+  id: NTPDGearagent
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChameleon
+    back: ClothingBackpackChameleon
+    shoes: ClothingShoesChameleon
+    mask: ClothingMaskGasChameleon
+    eyes: ClothingEyesChameleon
+    neck: ClothingNeckChameleon
+    gloves: ClothingHandsGlovesCombat
+    id: NTPDPDA
+    ears: ClothingHeadsetNTPD
+    pocket2: FlashlightSeclite
+
+- type: startingGear
   id: ERTLeaderGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader

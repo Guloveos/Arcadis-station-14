@@ -20,6 +20,15 @@
 
 - type: entity
   parent: BaseFlag
+  id: MercFlag
+  name: Merc flag
+  description: "Because Urban Problems require Urban Solutions!"
+  components:
+  - type: Sprite
+    state: merc_flag
+
+- type: entity
+  parent: BaseFlag
   id: NTFlag
   name: Nanotrasen flag
   description: "Glory to NT! Wait, they really made a flag for a corporation?"

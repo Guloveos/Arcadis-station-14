@@ -70,9 +70,9 @@
   - type: Magboots
     toggleAction: ActionToggleMagbootsAdvanced
   - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1
-    enabled: false
+    walkModifier: 3.5
+    sprintModifier: 4.5
+    enabled: true
   - type: NoSlip
   - type: Tag
     tags:

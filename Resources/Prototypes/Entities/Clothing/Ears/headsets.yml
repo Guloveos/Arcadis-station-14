@@ -77,6 +77,21 @@
 
 - type: entity
   parent: ClothingHeadset
+  id: ClothingHeadsetMerc
+  name: Merc headset
+  description: A headset used by mercenaries.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyMerc
+  - type: Sprite
+    sprite: Clothing\Ears\Headsets\Merc.rsi
+  - type: Clothing
+    sprite: Clothing\Ears\Headsets\Merc.rsi
+
+- type: entity
+  parent: ClothingHeadset
   id: ClothingHeadsetCentCom
   name: CentCom headset
   description: A headset used by the upper echelons of Nanotrasen.

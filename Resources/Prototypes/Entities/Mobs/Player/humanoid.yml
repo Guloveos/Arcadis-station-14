@@ -165,6 +165,19 @@
       - NamesFirstMilitaryLeader
       - NamesLastMilitary
 
+- type: randomHumanoidSettings
+  id: NTPDagent
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+    - type: GhostRole
+      name: ghost-role-information-NTPD
+      description: .
+      raffle:
+        settings: short
+    - type: Loadout
+      prototypes: [ NTPDGearagent ]
+
 ## ERT Chaplain
 
 - type: entity

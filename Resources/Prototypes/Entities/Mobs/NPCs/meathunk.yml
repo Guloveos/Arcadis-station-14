@@ -6,7 +6,7 @@
   - MobBloodstream
   id: BaseMobmeathunk
   abstract: true
-  description: A flesh demon aspect of the great meat.
+  description: A flesh demon, aspect of the great meat.
   components:
     - type: GhostRole
       allowMovement: true
@@ -48,7 +48,7 @@
       baseSprintSpeed: 2.5
       weightlessModifier: 1.5
     - type: Sprite
-      sprite: Mobs\Demons\The_flesh_anom.rsi
+      sprite: Mobs\Demons\Meathunk.rsi
       layers:
         - map: [ "enum.DamageStateVisualLayers.Base" ]
           state: alive
@@ -69,7 +69,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        500: Dead
+        425: Dead
     - type: Metabolizer
       solutionOnBody: false
       updateInterval: 0.25
@@ -93,13 +93,12 @@
       context: "human"
     - type: Bloodstream
       bloodMaxVolume: 300
-      bloodReagent: Laughter
     - type: Fixtures
       fixtures:
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 1
+            radius: 0.7
           density: 301
           mask:
           - MobMask

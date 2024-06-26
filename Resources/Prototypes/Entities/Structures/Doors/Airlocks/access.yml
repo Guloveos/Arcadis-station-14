@@ -279,7 +279,7 @@
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSyndicateAgent ]
+      board: [ DoorElectronicsmerc ]
 
 - type: entity
   parent: AirlockCommand

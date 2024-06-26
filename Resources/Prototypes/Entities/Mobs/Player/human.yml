@@ -24,6 +24,23 @@
 
 - type: entity
   parent: MobHuman
+  id: MobHumanMercenaryAgentBase
+  name: Mercenary
+  suffix: Human, Base
+  components:
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+      hair: HairBald
+    - type: Loadout
+      prototypes: [MercenaryOperativeGearBasic]
+    - type: RandomMetadata
+      nameSegments: [names_death_commando]
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+
+- type: entity
+  parent: MobHuman
   id: MobHumanSyndicateAgentBasegirl
   name: syndicate girl
   suffix: Human, Base
@@ -117,3 +134,13 @@
     nameSegments:
     - names_ninja_title
     - names_ninja
+
+- type: entity
+  save: false
+  name: The one whom enjoys games
+  parent: BaseMobtoweg
+  id: MobHumantoweg
+  suffix: Human, Base
+  components:
+    - type: Loadout
+      prototypes: [Towegoutfit]

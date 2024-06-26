@@ -25,3 +25,19 @@
   parent: BaseSpeciesDummy
   id: MobHumanDummy
   noSpawn: true
+
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobtoweg
+  name: The one whom wnjoys games
+  abstract: true
+  components:
+  - type: Icon 
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: HumanoidAppearance
+    species: Human
+    hideLayersOnEquip:
+    - Hair
+    - Snout

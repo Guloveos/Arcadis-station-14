@@ -36,6 +36,33 @@
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
 
+- type: startingGear
+  id: MercenaryOperativeGearBasic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsCombatFilled
+    gloves: ClothingHandsMercGlovesCombat
+    ears: ClothingHeadsetMerc
+  storage:
+    back:
+    - BoxSurvivalSyndicate
+    - WeaponPistolViper
+    - MedkitCombatFilled
+
+- type: startingGear
+  id: Towegoutfit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNanotrasen
+    back: ClothingBackpackHoldingNTPD
+    shoes: ClothingShoesBootsCombatFilled
+    neck: ClothingNeckCloakToweg
+    ears: ClothingHeadsetNTPD
+  storage:
+    back:
+    - BoxSurvivalSyndicate
+    - WeaponNTPDPulsePistol
+
 #Syndicate Operative Outfit - Basic
 - type: startingGear
   id: SyndicateOperativeGearBasic

@@ -58,6 +58,21 @@
 
 - type: entity
   parent: EncryptionKey
+  id: EncryptionKeyMerc
+  name: mercenary encryption key
+  description: An encryption key used by mercenaries.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Merc
+    defaultChannel: Merc
+  - type: Sprite
+    layers:
+    - state: crypt_rusted
+    - state: Merc_label
+
+- type: entity
+  parent: EncryptionKey
   id: EncryptionKeyNTPD
   name: NTPD encryption key
   description: An encryption key used by captain's bosses bosses.

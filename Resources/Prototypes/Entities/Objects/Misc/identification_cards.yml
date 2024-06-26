@@ -735,6 +735,18 @@
 
 - type: entity
   parent: IDCardStandard
+  id: MercIDCard
+  name: Merc ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: Merc
+  - type: Access
+    tags:
+    - merc
+
+- type: entity
+  parent: IDCardStandard
   id: PsychologistIDCard
   name: psychologist ID card
   components:

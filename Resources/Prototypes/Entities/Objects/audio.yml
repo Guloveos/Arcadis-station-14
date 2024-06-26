@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseItem
+  id: oldlog
+  name: Old logging device
+  description: It's an old audio logging device that is broken after years of being left to rot. Perhaps you could bring it to someone who is tech savvy to repair it for you?
+  components:
+  - type: Sprite
+    sprite: Objects\Devices\tape.rsi
+    state: log
+  - type: Item
+    sprite: Objects\Devices\tape.rsi
+    size: Tiny

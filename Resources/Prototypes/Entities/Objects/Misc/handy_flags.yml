@@ -12,6 +12,18 @@
 
 - type: entity
   parent: BaseItem
+  id: MercHandyFlag
+  name: Merc handheld flag
+  description: "Because Urban Problems require Urban Solutions!"
+  components:
+  - type: Sprite
+    sprite: Objects\Misc\Handy_Flags\merc_handy_flag.rsi
+    state: icon
+  - type: Item
+    sprite: Objects\Misc\Handy_Flags\merc_handy_flag.rsi
+
+- type: entity
+  parent: BaseItem
   id: NTHandyFlag
   name: Nanotrasen handheld flag
   description: "Glory to NT! Wait, they really made a handheld flag for a corporation?"

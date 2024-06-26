@@ -79,6 +79,15 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterContrabandMerc
+  name: "ENLIST TO THE URBAN SOLUTIONS"
+  description: "Because Urban Problems require Urban Solutions."
+  components:
+  - type: Sprite
+    state: poster64_merc
+
+- type: entity
+  parent: PosterBase
   id: PosterContrabandLustyExomorph
   name: "Lusty Exomorph"
   description: "A heretical poster depicting the titular star of an equally heretical book."

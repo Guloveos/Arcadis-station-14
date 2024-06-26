@@ -22,6 +22,14 @@
   longRange: true
 
 - type: radioChannel
+  id: Merc
+  name: chat-radio-Merc
+  keycode: 'r'
+  frequency: 1111
+  color: "#5B6600"
+  longRange: true
+
+- type: radioChannel
   id: Command
   name: chat-radio-command
   keycode: 'c'

@@ -80,7 +80,7 @@
   name: NTPD pen
   parent: PenEmbeddable
   id: NTPDPen
-  description: The best way to keep secrets! Write it down on paper!
+  description: The best way to keep secrets, Write it down on paper!
   components:
   - type: Tag
     tags:

@@ -98,6 +98,14 @@
 
 - type: entity
   parent: DoorElectronics
+  id: DoorElectronicsmerc
+  suffix: merc, Locked
+  components:
+  - type: AccessReader
+    access: [["merc"]]
+
+- type: entity
+  parent: DoorElectronics
   id: DoorElectronicsService
   suffix: Service, Locked
   components:
