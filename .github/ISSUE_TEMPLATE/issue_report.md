@@ -1,9 +1,9 @@
 ---
 name: Report an Issue
-about: "..."
+about: Report a bug or other issue you encountered on the server.
 title: ''
-labels: ''
-assignees: ''
+labels: 'Issue: Feature Request'
+assignees: TheDoctor1977
 
 ---
 
