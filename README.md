@@ -2,24 +2,21 @@
 
 Space Station 14 is a remake of SS13 that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), our homegrown engine written in C#.
 
-This is the primary repo for Space Station 14. To prevent people forking RobustToolbox, a "content" pack is loaded by the client and server. This content pack contains everything needed to play the game on one specific server.
+This is the primary repo for Arcadis Station, a Space Station 14 fork. We are based around an expansive world of factions and in-depth lore. If you would like to contribute something of your own, this is the place to do it.
 
-If you want to host or create content for SS14, this is the repo you need. It contains both RobustToolbox and the content pack for development of new content packs.
 
-## Links
+## This Is The Discord Link
 
-[Website](https://spacestation14.io/) | [Discord](https://discord.ss14.io/) | [Forum](https://forum.spacestation14.io/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.io/about/nightlies/)
+https://discord.gg/tgrAgvFQbM
 
-## Documentation/Wiki
+## Documentation
 
-Our [docs site](https://docs.spacestation14.io/) has documentation on SS14s content, engine, game design and more. We also have lots of resources for new contributors to the project.
+Though it is not entirely relevant to us, the upstream [docs site](https://docs.spacestation14.io/) has documentation that you may find useful when contributing.
 
 ## Contributing
 
-We are happy to accept contributions from anybody. Get in Discord if you want to help. We've got a [list of issues](https://github.com/space-wizards/space-station-14-content/issues) that need to be done and anybody can pick them up. Don't be afraid to ask for help either!  
-Just make sure your changes and pull requests are in accordance with the [contribution guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
-
-We are not currently accepting translations of the game on our main repository. If you would like to translate the game into another language consider creating a fork or contributing to a fork.
+We are happy to accept contributions from anybody.  If you're stuck on what to work on, see our [issues page](https://github.com/Guloveos/Arcadis-station-14/issues). If you need help with something, ask in dev-talk in the Discord.  
+Also, make sure your changes and pull requests are in accordance with the [contribution guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html). These are currently the same as upstream's guidelines, but may be subject to change.
 
 ## Building
 
