@@ -181,7 +181,7 @@
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitBrigmedic
-  name: META hardsuit helmet
+  name: brigmedic hardsuit helmet
   description: The lightweight helmet of the META hardsuit. Wait what does it look like?
   components:
   - type: Sprite
