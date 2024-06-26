@@ -182,7 +182,7 @@
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitBrigmedic
   name: brigmedic hardsuit helmet
-  description: The lightweight helmet of the META hardsuit. Wait what does it look like?
+  description: The lightweight helmet of the brigmedic 
   components:
   - type: Sprite
     sprite: Clothing/Head/Hardsuits/brigmedic.rsi
