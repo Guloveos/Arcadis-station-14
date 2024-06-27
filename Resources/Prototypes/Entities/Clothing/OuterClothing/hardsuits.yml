@@ -219,8 +219,7 @@
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitBrigmedic
   name: brigmedic hardsuit
-  description: Protects against viruses, and clowns.
-suit: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
+  description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi

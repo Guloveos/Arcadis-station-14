@@ -15,6 +15,14 @@
   background: /Textures/LobbyScreens/pharmacy.webp
 
 - type: lobbyBackground
+  id: hunted
+  background: /Textures/LobbyScreens/Hunted.webp
+
+- type: lobbyBackground
+  id: meth
+  background: /Textures/LobbyScreens/meth.webp
+
+- type: lobbyBackground
   id: SSXIV
   background: /Textures/LobbyScreens/ssxiv.webp
 

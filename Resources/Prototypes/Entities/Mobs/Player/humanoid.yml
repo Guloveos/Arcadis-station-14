@@ -167,12 +167,12 @@
 
 - type: randomHumanoidSettings
   id: NTPDagent
-  parent: EventHumanoidMindShielded
-  randomizeName: false
+  parent: NTPDERT
+  randomizeName: true
   components:
     - type: GhostRole
       name: ghost-role-information-NTPD
-      description: .
+      description: Error.
       raffle:
         settings: short
     - type: Loadout

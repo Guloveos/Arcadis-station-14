@@ -32,6 +32,17 @@
   categories:
   - UplinkWeaponryntpd
 
+- type: listing
+  id: UplinkgunNTPD
+  name: NTPD Pistol
+  description: R&D at the NTPD made a pulse pistol that uses void energy to make it "super". This pistols battery only needs to be recharged once every 2 months.
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Battery/NTPD_pulse_pistol.rsi, state: icon }
+  productEntity: WeaponNTPDPulsePistol
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkWeaponryntpd
+
 # Explosives
 
 - type: listing

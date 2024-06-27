@@ -212,6 +212,7 @@
       - MobFleshGolem
       - MobFleshClamp
       - MobFleshLover
+      - fleshrunner
     - settings:
         spawnOnSuperCritical: true
         minAmount: 10
@@ -228,6 +229,7 @@
       spawns:
       - MobFleshJared
       - MobFleshGolem
+      - fleshrunner
       - MobFleshClamp
       - MobFleshLover
     - settings:
@@ -247,6 +249,7 @@
       - MobFleshClamp
       - MobFleshLover
       - FleshKudzu
+      - fleshrunner
 
 - type: entity
   id: AnomalyBluespace
